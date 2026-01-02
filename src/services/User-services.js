@@ -14,6 +14,15 @@ class UserService{
         throw error;
     }
   }
+
+  createToken(user){
+    try {
+      const result = async this.userRepository
+    } catch (error) {
+      console.log("Something went wrong in the token creation");
+      throw error;
+    }
+  }
 }
 
 
