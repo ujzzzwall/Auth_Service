@@ -50,6 +50,26 @@ const signIn = async(req, res)=>{
   }
 }
 
+const isVerified = async (req,res)=>{
+  try {
+    const token = req.headers['x-access-token'];
+    const response = await userService.isAuthenticated(token);
+    return res.status(201).json({
+      message : "Successfully Verified the user and token is valid",
+      data : response,
+      err: {},
+      success :true 
+    })
+  } catch (error) {
+    console.log(error)
+      return res.status(500).json({
+        message : "something went wrong",
+        data : {},
+        err: error,
+        success :false
+      })
+  }
+}
 module.exports ={
-  create, signIn
+  create, signIn ,isVerified
 }

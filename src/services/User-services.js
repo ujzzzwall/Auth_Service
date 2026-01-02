@@ -32,13 +32,29 @@ class UserService{
       //step 4 -> Password matches create a token and send it to the user
       const newJWT = this.createToken({email : user.email , id : user.id});
       return newJWT;
-      
+
     } catch (error) {
       console.log("Something went wrong in the sign in process");
         throw error;
     }
   }
+  async isAuthenticated(token){
+    try {
+      const response = await this.verifyToken(token);
+      if(!response){
+        throw {error : 'invalid token'}
+      }
+      const user = this.userRepository.getById(response.id);
+      if(!user){
+        throw {error : 'no user with the corresponding token'}
+      }
+      return user.id;
+    } catch (error) {
+      console.log("Something went wrong in the auth process");
+        throw error;
+    }
 
+  }
   createToken(user){
     try {
       const result = jwt.sign(user , JWT_KEY ,{ expiresIn : 30 })
