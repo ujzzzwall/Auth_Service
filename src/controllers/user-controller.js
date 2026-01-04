@@ -70,6 +70,26 @@ const isVerified = async (req,res)=>{
       })
   }
 }
+
+const isAdmin = async (req,res)=>{
+  try {
+    const user = await userService.isAdmin(req.body.id)
+    return res.status(201).json({
+      message : " Admin Successfully Verified ",
+      data : user,
+      err: {},
+      success :true 
+    })
+  } catch (error) {
+    console.log(error)
+      return res.status(500).json({
+        message : "something went wrong",
+        data : {},
+        err: error,
+        success :false
+      })
+  }
+}
 module.exports ={
-  create, signIn ,isVerified
+  create, signIn ,isVerified ,isAdmin
 }

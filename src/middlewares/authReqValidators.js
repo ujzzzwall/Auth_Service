@@ -3,10 +3,23 @@ const ValidateUserAuth = (req,res,next)=>{
     return res.status(400).json({
       success : false,
       message : 'something went wrong ', 
-      data : 'email or password missing in the signup request',
+      data : {},
+      err : 'email or password missing in the signup request'
     })
   }
   next();
 }
 
-module.exports = { ValidateUserAuth }
+const validateIsAdmin = (req,res,next)=>{
+  if(!req.body.id){
+    return res.status(400).json({
+      success : false,
+      message : 'something went wrong ', 
+      data : {},
+      err : 'userid missing '
+    }) 
+  }
+  next();
+}
+
+module.exports = { ValidateUserAuth ,validateIsAdmin}
