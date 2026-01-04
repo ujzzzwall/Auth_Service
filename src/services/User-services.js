@@ -38,6 +38,7 @@ class UserService{
         throw error;
     }
   }
+
   async isAuthenticated(token){
     try {
       const response = await this.verifyToken(token);
