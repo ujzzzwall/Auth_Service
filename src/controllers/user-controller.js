@@ -17,11 +17,11 @@ const create = async(req,res)=>{
       success :true 
     })
   } catch (error) {
-      console.log(error)
-      return res.status(500).json({
-        message : "something went wrong",
+      // console.log(error)
+      return res.status(error.StatusCodes).json({
+        message : error.message,
         data : {},
-        err: error,
+        err: error.explaination,
         success :false
       })
   }
