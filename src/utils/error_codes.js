@@ -19,7 +19,7 @@
 //   SuccessCodes,
 //   SuccessErrorCodes
 // }
-const { StatusCodes } = require('http-status-codes');
+
 
 class AppErrors extends Error {
   constructor(

@@ -14,10 +14,10 @@ const create = async(req,res)=>{
       message : "Successfully created a new user",
       data : response,
       err: {},
-      success :true 
+      success :true
     })
   } catch (error) {
-      // console.log(error)
+      // console.log(error )
       return res.status(error.StatusCodes).json({
         message : error.message,
         data : {},
@@ -37,7 +37,7 @@ const signIn = async(req, res)=>{
       message : "Successfully sign in",
       data : response,
       err: {},
-      success :true 
+      success :true
     })
   } catch (error) {
     console.log(error)
